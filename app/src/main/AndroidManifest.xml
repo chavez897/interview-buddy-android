@@ -15,6 +15,9 @@
         android:theme="@style/Theme.InterviewBuddy"
         tools:targetApi="31">
         <activity
+            android:name=".categories.CategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".languages.LanguagesActivity"
             android:exported="true">
             <intent-filter>
