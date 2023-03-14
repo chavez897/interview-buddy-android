@@ -47,25 +47,25 @@
             android:id="@+id/option1_rb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="<Script>" />
+            android:text="Script>" />
 
         <RadioButton
             android:id="@+id/option2_rb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="<javascript>" />
+            android:text="javascript" />
 
         <RadioButton
             android:id="@+id/option3_rb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="<html>" />
+            android:text="html" />
 
         <RadioButton
             android:id="@+id/option4_rb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="<body>" />
+            android:text="body" />
 
     </RadioGroup>
 
