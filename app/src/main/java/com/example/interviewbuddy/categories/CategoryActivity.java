@@ -14,6 +14,7 @@ import com.example.interviewbuddy.languages.LangaugeListener;
 import com.example.interviewbuddy.languages.LanguageAdapter;
 import com.example.interviewbuddy.models.CategoryModel;
 import com.example.interviewbuddy.models.LanguageModel;
+import com.example.interviewbuddy.quiz.QuizActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,13 +34,17 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         String language = getIntent().getStringExtra("language");
-        System.out.println(language);
         db = FirebaseFirestore.getInstance();
         RecyclerView rv = findViewById(R.id.categoryRV);
         adapter = new CategoryAdapter(getApplicationContext(), new CategoryListener() {
             @Override
             public void onClick(CategoryModel category) {
-                System.out.println(category.getName());
+                Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
+                intent.putExtra("language", language);
+                intent.putExtra("level", category.getLevel());
+                intent.putExtra("categorie", category.getName());
+                startActivity(intent);
+
             }
         });
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
