@@ -31,7 +31,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewHolder> {
         public void onBindViewHolder(@NonNull ReviewHolder holder, int position) {
                 holder.name.setText("Question " + (position + 1));
                 holder.name.setTextColor(questions[position] ? Color.parseColor("#31FE40") : Color.parseColor("#FB0000"));
-
+                holder.img.setImageResource(questions[position] ? R.drawable.correct: R.drawable.incorrect);
         }
 
         @Override

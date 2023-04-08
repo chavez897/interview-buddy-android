@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.interviewbuddy.badges.BadgesActivity;
+import com.example.interviewbuddy.languages.LanguagesActivity;
 import com.example.interviewbuddy.review.ReviewActivity;
 
 import java.util.Arrays;
@@ -70,4 +72,15 @@ public class ResultActivity extends AppCompatActivity {
         intent.putExtra("review", review);
         startActivity(intent);
     }
+
+    public void goToHome(View view) {
+        Intent intent = new Intent(getApplicationContext(), LanguagesActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToMyBadges(View view) {
+        Intent intent = new Intent(getApplicationContext(), BadgesActivity.class);
+        startActivity(intent);
+    }
+
 }

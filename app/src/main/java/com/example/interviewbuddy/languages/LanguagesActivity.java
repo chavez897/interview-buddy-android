@@ -2,6 +2,7 @@ package com.example.interviewbuddy.languages;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.interviewbuddy.R;
+import com.example.interviewbuddy.badges.BadgesActivity;
 import com.example.interviewbuddy.categories.CategoryActivity;
 import com.example.interviewbuddy.models.LanguageModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -58,5 +60,10 @@ public class LanguagesActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void goToBadges(View view) {
+        Intent intent = new Intent(getApplicationContext(), BadgesActivity.class);
+        startActivity(intent);
     }
 }

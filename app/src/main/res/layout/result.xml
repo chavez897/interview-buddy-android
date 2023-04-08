@@ -97,6 +97,7 @@
             android:layout_width="61dp"
             android:layout_height="63dp"
             android:layout_marginStart="19dp"
+            android:scaleType="fitCenter"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="15dp"
@@ -104,7 +105,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView9"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/starbadge"
+            android:onClick="goToMyBadges"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -157,11 +160,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Review"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topics"
         android:layout_marginTop="5dp"
         android:onClick="goToReview"
         />
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/review"
+        app:layout_constraintTop_toBottomOf="@id/topics"
+        android:layout_marginTop="5dp"
+        android:onClick="goToHome"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

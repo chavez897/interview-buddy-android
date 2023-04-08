@@ -27,6 +27,9 @@
             android:name=".categories.CategoryActivity"
             android:exported="false" />
         <activity
+            android:name=".badges.BadgesActivity"
+            android:exported="false" />
+        <activity
             android:name=".languages.LanguagesActivity"
             android:exported="true">
             <intent-filter>
