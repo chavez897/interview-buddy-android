@@ -21,6 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -42,6 +43,8 @@ public class QuizActivity extends AppCompatActivity {
     String language;
     String level;
     String categorie;
+
+    boolean[] review = new boolean[5];
 
 
     @Override
@@ -118,9 +121,11 @@ public class QuizActivity extends AppCompatActivity {
     private void validateAnswer(String answer) {
         if (answer.equals(questions.get(questionCounter).get("correct"))) {
             correctCounter++;
+            review[questionCounter] = true;
         } else {
             incorrectCounter++;
             topicsToReview.add(questions.get(questionCounter).get("topic"));
+            review[questionCounter] = false;
         }
         questionCounter++;
         if (questionCounter < questions.size()) {
@@ -139,6 +144,8 @@ public class QuizActivity extends AppCompatActivity {
         intent.putExtra("incorrect", incorrectCounter);
         String topics = String.join(",", topicsToReview);
         intent.putExtra("topics", topics);
+        String reviewString  = Arrays.toString(review);
+        intent.putExtra("review", reviewString);
         startActivity(intent);
     }
 }

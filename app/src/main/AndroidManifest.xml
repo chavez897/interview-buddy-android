@@ -21,6 +21,9 @@
             android:name=".quiz.QuizActivity"
             android:exported="false" />
         <activity
+            android:name=".review.ReviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".categories.CategoryActivity"
             android:exported="false" />
         <activity
