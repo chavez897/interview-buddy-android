@@ -94,7 +94,6 @@ public class ResultActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        System.out.println("test");
                         if (task.isSuccessful()) {
                             List<DocumentSnapshot> list = task.getResult().getDocuments();
                             if (list.size() > 0) {
@@ -128,6 +127,7 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     public void updateRecord(long left, String id) {
+        System.out.println("*****************************");
         System.out.println(id);
         db.collection("quizesToBadges").document(id).update(
                 "left", left
@@ -160,18 +160,20 @@ public class ResultActivity extends AppCompatActivity {
         data.put("left", 10);
         data.put("language", language);
         data.put("level", level);
-        data.put("user_id", user);
+        data.put("user", user);
 
         db.collection("quizesToBadges")
                 .add(data)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
+                        System.out.println(documentReference.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        System.out.println("error");
                     }
                 });
     }
