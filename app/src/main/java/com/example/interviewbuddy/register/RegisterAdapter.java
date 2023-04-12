@@ -11,13 +11,9 @@ import com.example.interviewbuddy.R;
 
 import java.util.List;
 
-public class RegisterAdapter<RegisterActivity> extends RecyclerView.Adapter<RegisterHolder> {
+public class RegisterAdapter extends RecyclerView.Adapter<RegisterHolder> {
 
-    private List<RegisterActivity> registrationList;
-
-    public RegisterAdapter(List<RegisterActivity> registrationList) {
-        this.registrationList = registrationList;
-    }
+    private List<Register> registrationList;
 
     @NonNull
     @Override
@@ -29,7 +25,7 @@ public class RegisterAdapter<RegisterActivity> extends RecyclerView.Adapter<Regi
 
     @Override
     public void onBindViewHolder(@NonNull RegisterHolder holder, int position) {
-        RegisterActivity registration = registrationList.get(position);
+        Register registration = registrationList.get(position);
         holder.nameTextView.setText(registration.getName());
         holder.emailTextView.setText(registration.getEmail());
         holder.passwordTextView.setText(registration.getPassword());
