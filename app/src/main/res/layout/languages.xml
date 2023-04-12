@@ -5,6 +5,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="15dp"
+        android:onClick="logout"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/languageRV"
@@ -14,7 +24,7 @@
         tools:listitem="@layout/language_item"
         tools:itemCount="7"
         app:spanCount="2"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logout"
         app:layout_constraintBottom_toTopOf="@id/btnBadges"
         />
 

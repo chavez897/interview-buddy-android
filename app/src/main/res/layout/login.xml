@@ -111,17 +111,7 @@
         android:paddingHorizontal="5dp"
         />
 
-    <TextView
-        android:id="@+id/forgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forgot you Password?"
-        android:textStyle="bold"
-        android:textColor="#4EADEE"
-        app:layout_constraintStart_toEndOf="@id/v10"
-        app:layout_constraintTop_toBottomOf="@id/password"
-        android:layout_marginTop="15dp"
-        />
+
 
     <Button
         android:id="@+id/btnLogin"
@@ -130,7 +120,7 @@
         android:backgroundTint="@color/black"
         android:text="Login"
         android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@id/forgotPassword"
+        app:layout_constraintTop_toBottomOf="@id/password"
         app:layout_constraintStart_toStartOf="@id/v10"
         app:layout_constraintEnd_toEndOf="@id/v90"
         />

@@ -147,5 +147,6 @@ public class QuizActivity extends AppCompatActivity {
         String reviewString  = Arrays.toString(review);
         intent.putExtra("review", reviewString);
         startActivity(intent);
+        finish();
     }
 }

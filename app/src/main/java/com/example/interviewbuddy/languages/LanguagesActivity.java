@@ -9,12 +9,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.interviewbuddy.MainActivity;
 import com.example.interviewbuddy.R;
+import com.example.interviewbuddy.WelcomeActivity;
 import com.example.interviewbuddy.badges.BadgesActivity;
 import com.example.interviewbuddy.categories.CategoryActivity;
 import com.example.interviewbuddy.models.LanguageModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -65,5 +68,14 @@ public class LanguagesActivity extends AppCompatActivity {
     public void goToBadges(View view) {
         Intent intent = new Intent(getApplicationContext(), BadgesActivity.class);
         startActivity(intent);
+    }
+
+    public void logout(View view) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signOut();
+        Intent intent =new Intent(getApplicationContext(), WelcomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+
     }
 }

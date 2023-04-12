@@ -11,6 +11,7 @@ import com.example.interviewbuddy.R;
 import com.example.interviewbuddy.models.CategoryModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -32,7 +33,7 @@ public class BadgesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.badges);
         rv = findViewById(R.id.badges);
-        user = "WiyGaThUSzTXz0L0NJdA1nmmB0v1";
+        user = FirebaseAuth.getInstance().getCurrentUser().getUid();
         adapter = new BadgeAdapter(getApplicationContext());
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rv.setAdapter(adapter);

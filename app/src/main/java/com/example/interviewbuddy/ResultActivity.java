@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -49,7 +50,7 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result);
-        user = "WiyGaThUSzTXz0L0NJdA1nmmB0v1";
+        user = FirebaseAuth.getInstance().getCurrentUser().getUid();;
         language = getIntent().getStringExtra("language");
         level = getIntent().getStringExtra("level");
         categorie = getIntent().getStringExtra("categorie");
