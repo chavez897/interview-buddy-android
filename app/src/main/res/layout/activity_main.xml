@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@id/crackIt"
         app:layout_constraintStart_toEndOf="@id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="goToLogin"
+        android:onClick="goToRegistration"
         />
 
     <Button
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@id/crackIt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnRegister"
-        android:onClick="goToRegistration"
+        android:onClick="goToLogin"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

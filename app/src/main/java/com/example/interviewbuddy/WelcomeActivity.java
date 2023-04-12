@@ -30,7 +30,8 @@ public class WelcomeActivity  extends AppCompatActivity {
     }
 
     public void goToRegistration(View view) {
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        System.out.println("entro");
+        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
         startActivity(intent);
     }
 }

@@ -132,35 +132,6 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="25dp"
             />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="40dp"
-
-        >
-
-        <CheckBox
-            android:id="@+id/checkTerms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/password"
-            app:layout_constraintStart_toEndOf="@id/v10"
-            android:layout_marginTop="15dp"
-
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="I agree with Terms and Conditions"
-            app:layout_constraintTop_toTopOf="@id/checkTerms"
-            app:layout_constraintBottom_toBottomOf="@id/checkTerms"
-            app:layout_constraintStart_toEndOf="@id/checkTerms"
-            android:layout_marginTop="13dp"
-            />
-    </LinearLayout>
 
         <Button
             android:id="@+id/btnSignup"
@@ -169,7 +140,7 @@
             android:backgroundTint="@color/black"
             android:text="Sign UP"
             android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@id/checkTerms"
+            app:layout_constraintTop_toBottomOf="@id/password"
             app:layout_constraintStart_toStartOf="@id/v10"
             app:layout_constraintEnd_toEndOf="@id/v90"
             android:layout_marginHorizontal="40dp"
@@ -197,7 +168,7 @@
         />
 
     <TextView
-        android:id="@+id/forgotPassword"
+        android:id="@+id/goLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log In"
