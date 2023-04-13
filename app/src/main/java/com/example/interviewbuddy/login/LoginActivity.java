@@ -1,37 +1,71 @@
 package com.example.interviewbuddy.login;
 
-import android.view.LayoutInflater;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.interviewbuddy.MainActivity;
 import com.example.interviewbuddy.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.List;
+public class LoginActivity extends AppCompatActivity {
 
-public class LoginActivity extends RecyclerView.Adapter<LoginHolder> {
-
-    private List<Login> loginList;
-
-    @NonNull
-    @Override
-    public LoginHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.login, parent, false);
-        return new LoginHolder(view);
-    }
+    private EditText emailEditText, passwordEditText;
+    private Button loginButton, signupButton;
+    private FirebaseAuth mAuth;
 
     @Override
-    public void onBindViewHolder(@NonNull LoginHolder holder, int position) {
-        Login login = loginList.get(position);
-        holder.emailTextView.setText(login.getEmail());
-        holder.passwordTextView.setText(login.getPassword());
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.login);
 
-    @Override
-    public int getItemCount() {
-        return loginList.size();
+        emailEditText = findViewById(R.id.email);
+        passwordEditText = findViewById(R.id.password);
+        loginButton = findViewById(R.id.btnLogin);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = emailEditText.getText().toString().trim();
+                String password = passwordEditText.getText().toString().trim();
+
+                if (TextUtils.isEmpty(email)) {
+                    emailEditText.setError("Email is required");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(password)) {
+                    passwordEditText.setError("Password is required");
+                    return;
+                }
+
+
+                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
     }
 }
