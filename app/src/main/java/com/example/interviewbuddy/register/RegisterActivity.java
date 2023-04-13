@@ -1,64 +1,84 @@
 package com.example.interviewbuddy.register;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.interviewbuddy.MainActivity;
 import com.example.interviewbuddy.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText mUsernameEditText;
-    private EditText mPasswordEditText;
-    private EditText mEmailEditText;
-    private Button mRegisterButton;
-    private CheckBox mChekboxButton;
+    private EditText mNameField;
+    private EditText mEmailField;
+    private EditText mPasswordField;
+    private EditText mConfirmPasswordField;
+    private Button mRegisterBtn;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
-        mUsernameEditText = findViewById(R.id.name);
-        mPasswordEditText = findViewById(R.id.password);
-        mEmailEditText = findViewById(R.id.email);
-        mRegisterButton = findViewById(R.id.btnSignup);
-        mChekboxButton = findViewById(R.id.checkTerms);
+        mNameField = findViewById(R.id.name);
+        mEmailField = findViewById(R.id.email);
+        mPasswordField = findViewById(R.id.password);
+        mRegisterBtn = findViewById(R.id.btnSignup);
 
+        mAuth = FirebaseAuth.getInstance();
 
-        mRegisterButton.setOnClickListener(new View.OnClickListener() {
+        mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                String username = mUsernameEditText.getText().toString().trim();
-                String password = mPasswordEditText.getText().toString().trim();
-                String email = mEmailEditText.getText().toString().trim();
-
-                if (TextUtils.isEmpty(username)) {
-                    mUsernameEditText.setError("Username is required");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    mPasswordEditText.setError("Password is required");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(email)) {
-                    mEmailEditText.setError("Email is required");
-                    return;
-                }
-                if (!mChekboxButton.isChecked()) {
-                    Toast.makeText(RegisterActivity.this, "You must agree to the terms and conditions", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                // TODO: Implement registration logic here
+            public void onClick(View v) {
+                registerUser();
             }
         });
+
+    }
+
+    private void registerUser() {
+        String email = mEmailField.getText().toString().trim();
+        String password = mPasswordField.getText().toString().trim();
+        String confirmPassword = mConfirmPasswordField.getText().toString().trim();
+
+        if (TextUtils.isEmpty(email)) {
+            mEmailField.setError("Email is required");
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            mPasswordField.setError("Password is required");
+            return;
+        }
+
+        if (password.length() < 6) {
+            mPasswordField.setError("Password must be at least 6 characters long");
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            mConfirmPasswordField.setError("Passwords do not match");
+            return;
+        }
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Registration Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
