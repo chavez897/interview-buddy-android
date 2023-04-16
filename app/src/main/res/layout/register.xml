@@ -127,6 +127,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edit_text"
             android:hint="Password"
+            android:inputType="textPassword"
             android:paddingVertical="10dp"
             android:paddingHorizontal="5dp"
             android:layout_marginHorizontal="40dp"
